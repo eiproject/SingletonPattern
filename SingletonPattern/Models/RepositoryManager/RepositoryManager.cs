@@ -21,7 +21,7 @@ namespace StoreStock.BusinessLogic {
     public List<Stock> FilterStocksByCategory(string className) {
       List<Stock> allStock = storeStock;
       IEnumerable<Stock> filteredData = allStock.Where(
-        data => data.type == className);
+        data => data.Type == className);
       return filteredData.ToList();
     }
 
@@ -51,9 +51,9 @@ namespace StoreStock.BusinessLogic {
           Console.WriteLine($"Amount { amount } is exceed Product ID: { stockID } stock. (Available: {target?.Quantity})");
         }
         else {
-          target.quantity -= amount;
+          target.RemoveSomeQuantitiy(amount);
           Console.WriteLine($"Product iD: {target?.ID } '{target?.Title}' Sold { amount } pcs");
-          if (target.quantity == 0) {
+          if (target.Quantity == 0) {
             Repository del = new Repository(curentWerehouse);
             del.DeleteStock(stockID);
           }

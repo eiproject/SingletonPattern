@@ -12,7 +12,7 @@ namespace StoreStock.BusinessLogic {
       Repository repo = new Repository(theStore);
       fetchedStock = repo.AllStock();
       IEnumerable<Stock> filteredData = fetchedStock.Where(
-        data => data.type == className);
+        data => data.Type == className);
       fetchedStock = filteredData.ToList();
       ViewJSON viewer = new ViewJSON(fetchedStock);
     }

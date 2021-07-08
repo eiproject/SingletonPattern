@@ -4,8 +4,19 @@ using System.Text;
 
 namespace StoreStock.Models {
   public class Werehouse {
-    internal List<Stock> WerehouseData =  new List<Stock>();
-    internal bool isRunning = true;
-  }
+    private static Werehouse _store;
+    private List<Stock> _werehouseData;
+    private Werehouse() {
+      _werehouseData = new List<Stock>();
+    }
 
+    internal bool IsRunning = true;
+    public List<Stock> WerehouseData { get { return _werehouseData; } }
+    public static Werehouse getDatabase() {
+      if (_store == null) {
+        _store = new Werehouse();
+      }
+      return _store;
+    }
+  }
 }

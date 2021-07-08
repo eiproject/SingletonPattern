@@ -20,11 +20,11 @@ namespace StoreStock {
     /* Tipe Barang#Jumlah#Harga#Judul#Genre#PaperType */
     /* Tipe Barang = Buku, Pena, Pensil */
     internal Run() {
-      Werehouse FormulatrixStore = new Werehouse();
+      Werehouse FormulatrixStore = Werehouse.getDatabase();
 
       GenerateDummyData dummy = new GenerateDummyData(FormulatrixStore);
 
-      while (FormulatrixStore.isRunning) {
+      while (FormulatrixStore.IsRunning) {
         CLI FormulatrixInterface = new CLIMenu(FormulatrixStore);
         FormulatrixInterface.InterfaceMenu();
       }
@@ -33,7 +33,7 @@ namespace StoreStock {
   class Program {
     static void Main(string[] args) {
       Console.WriteLine("Welcome to Store Stock Application!");
-      Run App = new Run();
+      Run _app = new Run();
     }
   }
 }
