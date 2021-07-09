@@ -42,12 +42,8 @@ namespace StoreStock {
     static void Main(string[] args) {
       Console.WriteLine("Welcome to Store Stock Application!");
       Thread t = new Thread(new ThreadStart(runApp));
-      Thread t2 = new Thread(new ThreadStart(runApp));
-      // t.Start();
-      //t2.Start();
-      //t.Join();
-      //t2.Join();
-
+      t.Start();
+      
       Run _app = new Run();
     }
   }
