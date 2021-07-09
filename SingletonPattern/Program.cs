@@ -2,7 +2,7 @@
 using StoreStock.BusinessLogic;
 using StoreStock.Models;
 using System.Runtime.CompilerServices;
-
+using System.Threading;
 
 [assembly: InternalsVisibleTo("UnitTest")]
 namespace StoreStock {
@@ -20,10 +20,15 @@ namespace StoreStock {
     /* Tipe Barang#Jumlah#Harga#Judul#Genre#PaperType */
     /* Tipe Barang = Buku, Pena, Pensil */
     internal Run() {
-      Werehouse FormulatrixStore = Werehouse.getDatabase();
+      // singleton class
+      Werehouse FormulatrixStore = Werehouse.GetInstance();
 
       GenerateDummyData dummy = new GenerateDummyData(FormulatrixStore);
-
+/*
+      // try to create new store using singleton class, but can't
+      // there are some dummy data that created before
+      Werehouse FormulatrixStoreSM = Werehouse.getDatabase();
+*/
       while (FormulatrixStore.IsRunning) {
         CLI FormulatrixInterface = new CLIMenu(FormulatrixStore);
         FormulatrixInterface.InterfaceMenu();
@@ -31,8 +36,18 @@ namespace StoreStock {
     }
   }
   class Program {
+    static void runApp() {
+      Run _app = new Run();
+    }
     static void Main(string[] args) {
       Console.WriteLine("Welcome to Store Stock Application!");
+      Thread t = new Thread(new ThreadStart(runApp));
+      Thread t2 = new Thread(new ThreadStart(runApp));
+      // t.Start();
+      //t2.Start();
+      //t.Join();
+      //t2.Join();
+
       Run _app = new Run();
     }
   }

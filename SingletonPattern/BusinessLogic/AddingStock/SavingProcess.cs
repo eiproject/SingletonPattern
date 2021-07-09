@@ -23,29 +23,31 @@ namespace StoreStock.BusinessLogic {
     }
     internal void SaveData(
       string type, int quantity, decimal price,
-      string title, string genre_or_brand, string size) {
+      string title, string genreOrBrand, string size) {
       if (type.ToLower() == "book") {
-        Book newBook = new Book {
+        // singleton error during inheritance 
+        // book reference never changed (duplicated data)
+
+        /*Book newBook = new Book {
           genre = genre_or_brand,
           paperSize = size
-        };
-        newBook.SetGenericData(currentID, title, quantity, price, type);
+        };*/
+
+        //Book newBook = Book.GetInstance(genre_or_brand, size);
+        Book newBook = new Book();
+        newBook.SetBookData(genreOrBrand, size);
+        newBook.SetStockData(currentID, title, quantity, price, type);
 
         Stock newStock = newBook;
-
         Repository repo = new Repository(store);
         repo.AddMoreStock(newStock);
       }
       else if (type.ToLower() == "pencil") {
-        Pencil newPensil = new Pencil {
-          brand = genre_or_brand,
-          pencilSize = size
-        };
-        newPensil.SetGenericData(currentID, title, quantity, price, type);
+        Pencil newPencil = new Pencil();
+        newPencil.SetPencilData(genreOrBrand, size);
+        newPencil.SetStockData(currentID, title, quantity, price, type);
 
-
-        Stock newStock = newPensil;
-
+        Stock newStock = newPencil;
         Repository repo = new Repository(store);
         repo.AddMoreStock(newStock);
       }
@@ -57,12 +59,9 @@ namespace StoreStock.BusinessLogic {
     internal void SaveData(
       string type, int quantity, decimal price,
       string title, string brand, string inkColor, string linesize) {
-      Pen newPen = new Pen {
-        brand = brand,
-        inkColor = inkColor,
-        lineSize = linesize
-      };
-      newPen.SetGenericData(currentID, title, quantity, price, type);
+      Pen newPen = new Pen();
+      newPen.SetPenData(brand, inkColor, linesize);
+      newPen.SetStockData(currentID, title, quantity, price, type);
 
       Stock newStock = newPen;
       Repository repo = new Repository(store);

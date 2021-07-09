@@ -1,0 +1,8 @@
+﻿Why Singleton is bad?
+1. Hide dependencies
+2. Hard to test (can not use Mock)
+3. Can not create subclass
+4. Bad for extension in the future
+
+When Singleton is good?
+1. For a logging system

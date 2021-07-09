@@ -12,7 +12,7 @@ namespace StoreStock.Models {
 
     internal bool IsRunning = true;
     public List<Stock> WerehouseData { get { return _werehouseData; } }
-    public static Werehouse getDatabase() {
+    public static Werehouse GetInstance() {
       if (_store == null) {
         _store = new Werehouse();
       }

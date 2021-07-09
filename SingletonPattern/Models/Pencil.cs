@@ -4,9 +4,14 @@ using System.Text;
 
 namespace StoreStock.Models {
   class Pencil : Stock {
-    internal string brand;
-    internal string pencilSize;
-    public string Brand { get { return brand; } }
-    public string PencilSize { get { return pencilSize; } }
+    private string _brand;
+    private string _pencilSize;
+    public string Brand { get { return _brand; } }
+    public string PencilSize { get { return _pencilSize; } }
+
+    public void SetPencilData(string brand, string pencilSize) {
+      _brand = brand;
+      _pencilSize = pencilSize;
+    }
   }
 }

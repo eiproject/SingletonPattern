@@ -19,6 +19,7 @@ namespace StoreStock.Models {
     private int _quantity;
     private decimal _price;
     private string _type;
+
     private decimal _discount {
       get {
         int _counter = _quantity;
@@ -28,7 +29,7 @@ namespace StoreStock.Models {
       }
     }
     // internal data
-    internal void SetGenericData(int id, string title, int quantity, decimal price, string type) {
+    internal void SetStockData(int id, string title, int quantity, decimal price, string type) {
       _id = id;
       _title = title;
       _quantity = quantity;
